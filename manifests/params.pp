@@ -17,7 +17,10 @@ class offlineimap::params {
   ### Application related parameters
 
   $packages = $::operatingsystem ? {
-    default => ['offlineimap']
+    default => [
+      'offlineimap',
+      'notmuch'
+    ]
   }
 
   $enabled = true
