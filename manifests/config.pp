@@ -27,7 +27,6 @@ class offlineimap::config {
   # Make sure PID directory exists for init script
   file { '/var/run/offlineimap':
     ensure  => $directory_ensure,
-    force   => true,
     owner   => root,
     group   => root,
     mode    => '0777'
