@@ -24,14 +24,6 @@ class offlineimap::config {
     require => Class['offlineimap::package']
   }
 
-  # Make sure PID directory exists for init script
-  file { '/var/run/offlineimap':
-    ensure  => $directory_ensure,
-    owner   => root,
-    group   => root,
-    mode    => '0777'
-  }
-
   # if laptop_mode_tools is installed: disable offlinemap when on battery
   if defined(laptop_mode_tools::control_service) {
     laptop_mode_tools::control_service { 'offlineimap': }

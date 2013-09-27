@@ -20,7 +20,9 @@ test -x $DAEMON || exit 0
 
 [ -r /etc/default/offlineimap ] && . /etc/default/offlineimap
 
-PIDFILE="/var/run/offlineimap/${NAME}.${USER}.pid"
+PIDDIR="/var/run/offlineimap"
+PIDFILE="/${PIDDIR}/${NAME}.${USER}.pid"
+
 
 . /lib/lsb/init-functions
 
@@ -29,6 +31,7 @@ reload_offlineimap_agent() {
 }
 
 start_offlineimap() {
+    mkdir -p $PIDDIR
     start-stop-daemon --start --chuid $USER \
         --pidfile $PIDFILE --make-pidfile \
 	--startas $DAEMON --background -- $DAEMON_OPTS
